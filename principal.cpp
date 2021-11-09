@@ -136,7 +136,11 @@ int main(){
                         char* locAgenda = agendar(S, f, regU, locU);
                         // DESPUES EN LA PERSONA A AGENDAR LO QUE HAY QUE HACER ES AGENDAR LA FECHA Y LA LOCALIDAD QUE DEVUELVE LA OTRA FUNCION
 
-                        agendarPersona(f,locAgenda, usuario);
+                        // SI LA CI EXISTE NO HAY QUE AGENDAR DE NUEVO
+                        if(!perteneceAListaPersonas(usuario, lPersonas))
+                        	agendarPersona(f,locAgenda, usuario);
+                        else
+                        	printf("Usted ya esta agendado \n");
 
                         break;
                 }
