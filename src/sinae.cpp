@@ -98,12 +98,12 @@ SINAE cargarDatos(SINAE &S){
     S->arrSECOED[3] = oeste;
     
     //printf("Se ingresaron todos las localidades y zonas. \n", S->arrSECOED[0]);
-    for(int i=0; i<= 3; i++){
+    //for(int i=0; i<= 3; i++){
     	//printf("ALGO %d \n", i);
     	//printf("La region es %s \n", S->arrSECOED[i]->zona);
-    	Grafo g = S->arrSECOED[i]->grafo;
-    	imprimirGrafo(g);
-    }
+    	//Grafo g = S->arrSECOED[i]->grafo;
+    	//imprimirGrafo(g);
+    //}
 
 
     return S;
