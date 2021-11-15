@@ -1,0 +1,211 @@
+
+//Crea la base de datos
+CREATE DATABASE SINAE;
+
+//Crea la tabla SECOED
+CREATE TABLE SECOED(
+	id int NOT NULL AUTO_INCREMENT,
+    zona varchar(6),
+    stock int,
+    grafoId int,
+    PRIMARY KEY (idsecoed)
+);
+// el id tambien, el grafo arranca en 1 // norte: id 1, grafoId 1
+
+//Inserta todos los secoed
+INSERT INTO secoed 
+VALUES
+(1, 'norte', 0, 1),
+(2, 'sur', 0, 2),
+(3, 'este', 0, 3),
+(4, 'oeste', 0, 4);
+
+//Creo la tabla de Grafo
+CREATE TABLE grafo(
+id int NOT NULL,
+idspuntosvacunacion int,
+max int, 
+n int, 
+m int
+);
+
+//Creo la tabla idspuntosvacunacion
+CREATE TABLE idspuntosvacuanacion(
+id int NOT NULL,
+idgrafo int,
+idpuntovacunacion int
+);
+
+
+//Creo la tabla de PuntoVacunacion
+CREATE TABLE PuntoVacunacion (
+id int NOT NULL,
+adyacentesid int(6),
+localidad varchar(15),
+cantVacunas int,
+tipoVacunaid int,
+agendaid int,
+genteAgendada int,
+PRIMARY KEY(id)
+);
+
+//Creo la tabla de Adyacentes
+CREATE TABLE Adyacentes(
+id int NOT NULL,
+adyacentes int,
+localidad int,
+PRIMARY KEY(id)
+);
+
+//Creo la tabla de Vacunas
+CREATE TABLE Vacunas (
+id int NOT NULL,
+laboratorio varchar(30),
+nombre varchar(30),
+fecha_vencimiento date,
+PRIMARY KEY(id)
+);
+
+//Creo la tabla de Persona
+CREATE TABLE Persona (
+id int NOT NULL,
+nombre varchar(30),
+apellido varchar(30),
+ci int,
+fecha_nacimiento date,
+localidad varchar(30),
+region int,
+fecha_reserva datetime,
+localidad_reserva varchar(30),
+PRIMARY KEY(id)
+);
+
+//Inserta todos los PuntosVacunacion
+INSERT INTO PuntoVacunacion 
+VALUES
+(1, 1, 'Artigas', 0, 0, 1, 0),
+(2, 2, 'Salto', 0, 0, 2, 0),
+(3, 3, 'Rivera1', 0, 0, 3, 0),
+(4, 4, 'Tacuarembo', 0, 0, 4, 0),
+(5, 5, 'Rivera2', 0, 0, 5, 0),
+(6, 6, 'Durazno', 0, 0, 6, 0),
+(7, 7, 'Florida', 0, 0, 7, 0), 
+(8, 8, 'SanJose', 0, 0, 8, 0),
+(9, 9, 'Canelones', 0, 0, 9, 0),
+(10, 10, 'CerroLargo', 0, 0, 10, 0),
+(11, 11, 'TreintayTres', 0, 0, 11, 0),
+(12, 12, 'Lavalleja', 0, 0, 12, 0),
+(13, 13, 'Rocha', 0, 0, 13, 0),
+(14, 14, 'Paysandu', 0, 0, 14, 0),
+(15, 15, 'RioNegro', 0, 0, 15, 0),
+(16, 16, 'Soriano', 0, 0, 16, 0),
+(17, 17, 'Flores', 0, 0, 17, 0),
+(18, 18, 'Colonia', 0, 0, 18, 0);
+
+//Inserta los SECOED
+INSERT INTO puntovacunacion
+VALUES
+(19, 19, 'SECOEDNorte', 0, 0, 19, 0),
+(20, 20, 'SECOEDSur', 0, 0, 20, 0),
+(21, 21, 'SECOEDEste', 0, 0, 21, 0),
+(22, 22, 'SECOEDOeste', 0, 0, 22, 0);
+
+//Inserto todas las adyacencias
+INSERT INTO adyacentes 
+VALUES
+(1, 19, 2),
+(2, 1, 2),
+(3, 19, 3),
+(4, 19, 4),
+(5, 4, 5),
+(6, 2, 19),
+(7, 2, 1),
+(8, 3, 19),
+(9, 4, 19),
+(10, 5, 4),
+(11, 20, 6),
+(12, 20, 7),
+(13, 20, 8),
+(14, 6, 8),
+(15, 8, 9),
+(16, 6, 20),
+(17, 7, 20),
+(18, 8, 20),
+(19, 8, 6),
+(20, 9, 8),
+(21, 10, 12),
+(22, 11, 13),
+(23, 12, 13),
+(24, 21, 12),
+(25, 21, 13),
+(26, 12, 10),
+(27, 13, 11),
+(28, 13, 12),
+(29, 12, 21),
+(30, 13, 21),
+(31, 14, 16),
+(32, 14, 22),
+(33, 15, 17),
+(34, 22, 17),
+(35, 22, 18),
+(36, 16, 14),
+(37, 22, 14),
+(38, 17, 15),
+(39, 17, 22),
+(40, 18, 22);
+
+//Uno las tablas de PuntoVacunacion y Adyacentes con puntovacunacion.adyacentesid = adyacentes.localidad,,, no se si queda hecho o si se accede asi
+SELECT * FROM puntovacunacion AS pv
+INNER JOIN adyacentes AS a
+ON pv.adyacentesid =
+a.localidad;
+
+//Inserto los puntosdevacunacion en idspuntovacunacion
+INSERT INTO idspuntosvacuanacion
+VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 2, 6),
+(7, 2, 7),
+(8, 2, 8),
+(9, 2, 9),
+(10, 3, 10),
+(11, 3, 11),
+(12, 3, 12),
+(13, 3, 13),
+(14, 4, 14),
+(15, 4, 15),
+(16, 4, 16),
+(17, 4, 17),
+(18, 4, 18),
+(19, 1, 19),
+(20, 2, 20),
+(21, 3, 21),
+(22, 4, 22);
+
+//Inserto los grafos
+INSERT INTO grafo
+VALUES
+(1, 1,6, 6,5),
+(2, 2, 5, 5, 5),
+(3, 3, 5, 5, 5),
+(4, 4, 6, 6, 5);
+
+//Creo la tabla de agenda
+CREATE TABLE agenda(
+idlocalidad int,
+anio int,
+mes int, 
+dia int, 
+hora int, 
+minuto int
+);
+
+
+
+
+
+
