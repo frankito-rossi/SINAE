@@ -91,7 +91,10 @@ bool esDiaHabil(Fecha f){
 	int domingoMes = 1;
 	int domingoAnio = 2020;
 
-	int acum = f->dia;
+	if((f->dia == 1 && f->mes == 1) || (f->dia == 1 && f->mes == 5) || (f->dia == 18 && f->mes == 7) || (f->dia == 25 && f->mes == 8) || (f->dia == 25 && f->mes == 12)){
+		res = false;
+	} else {
+		int acum = f->dia;
 	if(f->anio == domingoAnio){
 		if(f->mes != domingoMes){
 			acum = acum + (arrayDiasMes[domingoMes-1]);//31;//31 DE ENERO (arrayDiasMes[domingoMes-1]);
@@ -121,6 +124,8 @@ bool esDiaHabil(Fecha f){
 		res = false;
 	}
 	//printf("Acum = %d \n", acum);
+
+	}
 	return res;
 }
 
